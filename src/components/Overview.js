@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Spinner } from "react-bootstrap";
 class Overview extends Component {
   render() {
     let { currentStatistics } = this.props;
@@ -14,7 +15,7 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Tổng Trâu</p>
-      <h3 class="card-title">{currentStatistics.activeWorkers}</h3>
+                <h3 class="card-title">{currentStatistics.activeWorkers}</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -30,7 +31,7 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Trâu Off</p>
-                <h3 class="card-title">75</h3>
+                <h3 class="card-title">0</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -46,7 +47,7 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Trâu On</p>
-                <h3 class="card-title">751</h3>
+                <h3 class="card-title">{currentStatistics.activeWorkers}</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -61,8 +62,12 @@ class Overview extends Component {
                 <div class="card-icon">
                   <i class="material-icons">payment</i>{" "}
                 </div>
-                <p class="card-category">Thanh toán</p>
-                <h3 class="card-title">$34,245</h3>
+                <p class="card-category">Chưa Thanh Toán ETH</p>
+                <h3 class="card-title">
+                  {new Intl.NumberFormat().format(
+                    currentStatistics.unpaid / 1000000000000000000
+                  )}
+                </h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -74,7 +79,11 @@ class Overview extends Component {
         </div>
       );
     } else {
-      return <div>LOADING</div>;
+      return (
+        <Spinner animation="border" role="status" style={{ pading: 50 }}>
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      );
     }
   }
 }
