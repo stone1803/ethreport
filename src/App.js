@@ -1,12 +1,30 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Home from "./Layout/Home"
+import Home from "./Layout/Home";
+import {BrowserRouter, Route, Switch } from "react-router-dom";
+import EthTemplate from "./templates/eth";
+import {routesETH} from "./router"
+const showETH = routes => {
+  if (routes && routes.length > 0) {
+    return routes.map((item, index) => {
+      return (
+        <EthTemplate
+          key={index}
+          path={item.path}
+          exact={item.exact}
+          Component={item.component}
+        />
+      );
+    });
+  }
+};
 function App() {
   return (
-    <div>
-      <Home/>
-    </div>
+    <BrowserRouter>
+    <Switch>
+      {showETH(routesETH)}
+    </Switch>
+    
+    </BrowserRouter>
   );
 }
 
