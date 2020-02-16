@@ -30,7 +30,6 @@ export default class Ethmap extends Component {
               {/* content */}
               </div>
             </div>
-            <Footer/>
         
           </div>
         )

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
-import Overview from "../components/Overview"
-import Footer from "../components/Footer";
-export default class Home extends Component {
+import { actGetDashBroad } from "../Action/ApiETH";
+import { connect } from "react-redux";
+class Home extends Component {
+  componentDidMount() {
+    this.props.dispatch(actGetDashBroad());
+  }
   render() {
+
     return (
       <div>
         <div className="wrapper ">
@@ -14,7 +18,6 @@ export default class Home extends Component {
             data-background-color="black"
             data-image="../assets/img/sidebar-2.jpg"
           >
- 
             <Menu />
           </div>
           <div className="main-panel">
@@ -24,11 +27,7 @@ export default class Home extends Component {
                 <div className="row"></div>
               </div>
             </div>
-            <div className="row container-fluid mt-3">
-            
-
-
-            </div>
+            <div className="row container-fluid mt-3"></div>
             <div className="row">
               <div className="col-lg-6 col-md-12">
                 <div className="card">
@@ -496,9 +495,11 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-      <Footer/>
-  
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  currentStatistics: state.ListDataETH.DashBroad.currentStatistics
+});
+export default connect(mapStateToProps,null)(Home);
