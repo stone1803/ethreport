@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { css } from "@emotion/core";
+import { HashLoader } from "react-spinners";
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: blue;
+`;
+
 class Overview extends Component {
   render() {
-    let { currentStatistics } = this.props;
-    console.log(currentStatistics);
+    let { currentStatistics ,worker} = this.props;
+    console.log(this.props);
     if (currentStatistics) {
       return (
         <div class="row container-fluid mt-3">
@@ -14,11 +22,11 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Tổng Trâu</p>
-      <h3 class="card-title">{currentStatistics.activeWorkers}</h3>
+      <h3 class="card-title">{worker.length}</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">local_offer</i> Tracked from Github
+                  <i class="material-icons">local_offer</i> Xem chi tiết
                 </div>
               </div>
             </div>
@@ -30,11 +38,11 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Trâu Off</p>
-                <h3 class="card-title">75</h3>
+                <h3 class="card-title">{worker.length-currentStatistics.activeWorkers}</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">local_offer</i> Tracked from Github
+                  <i class="material-icons">local_offer</i> Xem chi tiết
                 </div>
               </div>
             </div>
@@ -46,11 +54,11 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Trâu On</p>
-                <h3 class="card-title">751</h3>
+                <h3 class="card-title">{currentStatistics.activeWorkers}</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">local_offer</i> Tracked from Github
+                  <i class="material-icons">local_offer</i> Xem chi tiết
                 </div>
               </div>
             </div>
@@ -59,10 +67,10 @@ class Overview extends Component {
             <div class="card card-stats">
               <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
-                  <i class="material-icons">payment</i>{" "}
+                  <i class="material-icons">payment</i>
                 </div>
-                <p class="card-category">Thanh toán</p>
-                <h3 class="card-title">$34,245</h3>
+                <p class="card-category">Chưa thanh toán  ETH</p>
+                <h3 class="card-title">{new Intl.NumberFormat().format(currentStatistics.unpaid/1000000000000000000 )}</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -71,14 +79,23 @@ class Overview extends Component {
               </div>
             </div>
           </div>
+          
         </div>
       );
     } else {
-      return <div>LOADING</div>;
+      return <div className="HashLoader container">
+      <HashLoader
+        css={override}
+        size={150}
+        //size={"150px"} this also works
+        color={"#123abc"}
+      />
+    </div>;
     }
   }
 }
 const mapStateToProps = state => ({
-  currentStatistics: state.ListDataETH.DashBroad.currentStatistics
+  currentStatistics: state.ListDataETH.DashBroad.currentStatistics,
+  worker: state.ListDataETH.Workers
 });
 export default connect(mapStateToProps, null)(Overview);

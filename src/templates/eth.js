@@ -2,9 +2,7 @@ import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import Menu from "../components/Menu";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Overview from "../components/Overview"
-import { renderIntoDocument } from "react-dom/test-utils";
 const Layout = props => {
   return (
     <Fragment>

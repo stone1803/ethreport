@@ -9,15 +9,9 @@ export default class Ethmap extends Component {
     render() {
         return (
             <div>
-            <div className="wrapper ">
-              <div
-                className="sidebar"
-                data-color="purple"
-                data-background-color="black"
-                data-image="../assets/img/sidebar-2.jpg"
-              >
+            <div >
+      
      
-                <Menu />
               </div>
               <div className="main-panel">
                 <div className="mt-5">
@@ -31,7 +25,7 @@ export default class Ethmap extends Component {
               </div>
             </div>
         
-          </div>
+        
         )
     }
 }
