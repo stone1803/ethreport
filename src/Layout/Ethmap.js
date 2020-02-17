@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import Footer from '../components/Footer'
-import Header from "../components/Header";
-import Overview from "../components/Overview"
-import Menu from "../components/Menu"
+
 
 
 export default class Ethmap extends Component {

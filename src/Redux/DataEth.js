@@ -1,6 +1,8 @@
 let DataETH = {
   DashBroad: [],
-  Workers:[]
+  Workers:[],
+  Payouts :[],
+  ETH:[]
 };
 const ListDataETH = (state = DataETH, action) => {
   switch (action.type) {
@@ -9,6 +11,11 @@ const ListDataETH = (state = DataETH, action) => {
       return { ...state };
     case "SHOW_WORKERS":
       state.Workers = action.payload;
+      return {...state};
+    case "ETH":
+      console.log(action)
+      state.ETH= action.payload;
+      
       return {...state};
     default:
       return state;

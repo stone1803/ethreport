@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import Header from "../components/Header";
-import Menu from "../components/Menu";
-import { actGetDashBroad, actGetWorkers } from "../Action/ApiETH";
+import { actGetDashBroad, actGetWorkers, actGetWhatToMine } from "../Action/ApiETH";
 import { connect } from "react-redux";
 import Table from "../components/Table/Table";
 class Home extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     this.props.dispatch(actGetDashBroad());
     this.props.dispatch(actGetWorkers());
+    this.props.dispatch(actGetWhatToMine())
   }
   render() {
     return (

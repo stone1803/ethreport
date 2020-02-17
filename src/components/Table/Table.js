@@ -1,67 +1,73 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+class Table extends Component {
+  tamTinhETH = ()=>{
+      const Onemhz = 0.00007684523
+      let {currentStatistics} = this.props;
+      let tong = (currentStatistics.currentHashrate* Onemhz)
+      let total = Intl.NumberFormat().format(tong)
+    return Math.floor(tong/1000000)
 
-export default class Table extends Component {
+return tong  }
   render() {
-    return (
-      <div classname="card-header card-headr-primary">
-        <div className="table-responsive">
-          <table className="table">
-            <thead className=" text-primary">
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Country</th>
-                <th>City</th>
-                <th>Salary</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Dakota Rice</td>
-                <td>Niger</td>
-                <td>Oud-Turnhout</td>
-                <td className="text-primary">$36,738</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Minerva Hooper</td>
-                <td>Curaçao</td>
-                <td>Sinaai-Waas</td>
-                <td className="text-primary">$23,789</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Sage Rodriguez</td>
-                <td>Netherlands</td>
-                <td>Baileux</td>
-                <td className="text-primary">$56,142</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Philip Chaney</td>
-                <td>Korea, South</td>
-                <td>Overland Park</td>
-                <td className="text-primary">$38,735</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Doris Greene</td>
-                <td>Malawi</td>
-                <td>Feldkirchen in Kärnten</td>
-                <td className="text-primary">$63,542</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Mason Porter</td>
-                <td>Chile</td>
-                <td>Gloucester</td>
-                <td className="text-primary">$78,615</td>
-              </tr>
-            </tbody>
-          </table>
+    let { currentStatistics } = this.props;
+    if (!currentStatistics) {
+      return <div></div>;
+    } else {
+      return (
+        <div classname="card-header card-headr-primary">
+          <div className="table-responsive container">
+            <table className="table">
+              <thead className=" text-primary">
+                <tr>
+                  <th>Per</th>
+                  <th>Fees</th>
+                  <th>Est. Rewards</th>
+                  <th>Rev. BTC</th>
+                  <th>Rev. $</th>
+                  <th>Cost</th>
+                  <th>Profit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+      <td>1 Ngày</td>
+                  <td>Free</td>
+                  <td>{this.tamTinhETH()} ETH</td>
+                  <td>{this.tamTinhETH()*0.025463} BTC</td>
+                  <td className="text-primary">${Math.floor(this.tamTinhETH()*245.089173)}</td>
+      <td>{Math.floor((0.1*24/1)*currentStatistics.activeWorkers)}</td>
+
+                </tr>
+                <tr>
+                  <td>1 Tuần</td>
+                  <td>Free</td>
+                  <td>{this.tamTinhETH()*7} ETH</td>
+                  <td>{(this.tamTinhETH()*0.025463)*7} BTC</td>
+                  <td className="text-primary">${(Math.floor(this.tamTinhETH()*245.089173))*7}</td>
+      <td>{(Math.floor((0.1*24/1)*currentStatistics.activeWorkers))*7}</td>
+                </tr>
+                <tr>
+                  <td>1 Tháng</td>
+                  <td>Free</td>
+                  <td>{this.tamTinhETH()*30} ETH</td>
+                  <td>{(this.tamTinhETH()*0.025463)*30} BTC</td>
+                  <td className="text-primary">${(Math.floor(this.tamTinhETH()*245.089173)*30)}</td>
+      <td>{(Math.floor((0.1*24/1)*currentStatistics.activeWorkers)*30)}</td>
+                </tr>
+               
+                  
+                
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
+const mapStateToProps = state => ({
+  currentStatistics: state.ListDataETH.DashBroad.currentStatistics
+});
+
+export default connect(mapStateToProps, null)(Table);
