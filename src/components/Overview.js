@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+<<<<<<< HEAD
 import { css } from "@emotion/core";
 import { HashLoader } from "react-spinners";
 const override = css`
@@ -8,6 +9,9 @@ const override = css`
   border-color: blue;
 `;
 
+=======
+import { Spinner } from "react-bootstrap";
+>>>>>>> origin
 class Overview extends Component {
   render() {
     let { currentStatistics ,worker} = this.props;
@@ -22,7 +26,11 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Tổng Trâu</p>
+<<<<<<< HEAD
       <h3 class="card-title">{worker.length}</h3>
+=======
+                <h3 class="card-title">{currentStatistics.activeWorkers}</h3>
+>>>>>>> origin
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -38,7 +46,11 @@ class Overview extends Component {
                   <i class="material-icons">computer</i>
                 </div>
                 <p class="card-category">Trâu Off</p>
+<<<<<<< HEAD
                 <h3 class="card-title">{worker.length-currentStatistics.activeWorkers}</h3>
+=======
+                <h3 class="card-title">0</h3>
+>>>>>>> origin
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -69,8 +81,17 @@ class Overview extends Component {
                 <div class="card-icon">
                   <i class="material-icons">payment</i>
                 </div>
+<<<<<<< HEAD
                 <p class="card-category">Chưa thanh toán  ETH</p>
                 <h3 class="card-title">{new Intl.NumberFormat().format(currentStatistics.unpaid/1000000000000000000 )}</h3>
+=======
+                <p class="card-category">Chưa Thanh Toán ETH</p>
+                <h3 class="card-title">
+                  {new Intl.NumberFormat().format(
+                    currentStatistics.unpaid / 1000000000000000000
+                  )}
+                </h3>
+>>>>>>> origin
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -83,6 +104,7 @@ class Overview extends Component {
         </div>
       );
     } else {
+<<<<<<< HEAD
       return <div className="HashLoader container">
       <HashLoader
         css={override}
@@ -91,6 +113,13 @@ class Overview extends Component {
         color={"#123abc"}
       />
     </div>;
+=======
+      return (
+        <Spinner animation="border" role="status" style={{ pading: 50 }}>
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      );
+>>>>>>> origin
     }
   }
 }
