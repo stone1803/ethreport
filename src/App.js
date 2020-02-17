@@ -1,6 +1,5 @@
 import React from "react";
-import Home from "./Layout/Home";
-import {BrowserRouter, Route, Switch } from "react-router-dom";
+import {BrowserRouter, Switch } from "react-router-dom";
 import EthTemplate from "./templates/eth";
 import {routesETH} from "./router"
 const showETH = routes => {

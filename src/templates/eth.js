@@ -26,7 +26,6 @@ const Layout = props => {
             <div className="row container-fluid mt-3">
               <Overview />
             </div>
-            {/* content */}
             {props.children}
           </div>
         </div>
