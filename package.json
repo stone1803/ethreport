@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "coinmarketcap-api": "^3.0.1",
+    "node-coinmarketcap": "^0.2.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
@@ -18,6 +19,7 @@
     "react-spinners": "^0.8.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "request-promise": "^4.2.5",
     "require": "^2.4.20"
   },
   "scripts": {

@@ -1,8 +1,18 @@
-const CoinMarketCap = require("coinmarketcap-api");
+import { createAction } from "../Action/action";
+const ethConvertUSD = () => {
+  var CoinMarketCap = require("node-coinmarketcap");
+  var coinmarketcap = new CoinMarketCap();
+  return dispatch =>{
+    coinmarketcap.multi(coins =>{
+      let mang ={
+          BTC: coins.get("BTC").price_usd,
+          ETH : coins.get("ETH").price_usd,
+          ETHBTC:coins.get("ETH").price_btc
+      }      
+      dispatch(createAction("COIN",mang))
+    })
+  }
 
-const ethConvertBTC = () => {
-  const apiKey = "711448c5-3186-4d6d-b8f1-3226cf76111b";
-  const client = new CoinMarketCap(apiKey);
-  client.getQuotes({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
+  
 };
-export { ethConvertBTC };
+export { ethConvertUSD };

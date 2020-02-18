@@ -1,29 +1,60 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ethConvertBTC } from "../Coinmarketcap";
+import { ethConvertUSD } from "../Coinmarketcap";
 class Table extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ETH: null
+    };
+  }
+
   tamTinhETH = () => {
-    const Onemhz = 0.00007684523;
-    let { currentStatistics } = this.props;
+    const Onemhz = 0.00007761904;
+    let { currentStatistics, coins } = this.props;
+
     let a = Math.floor(currentStatistics.currentHashrate / 1000000);
     let tong = a * Onemhz;
-    let total = Intl.NumberFormat().format(tong);
     return tong;
   };
+  ETH = (loai, soTron) => {
+    const Onemhz = 0.00007761904
+    let { currentStatistics, coins } = this.props;
+
+    let a = Math.floor(currentStatistics.currentHashrate / 1000000);
+    let tong = a * Onemhz;
+    switch (loai) {
+      case "NULL":
+        let tota = tong.toFixed(soTron);
+        return tota;
+        break;
+      case "ETHBTC":
+        let coin1 = coins.ETHBTC;
+        let tota1 = (tong * coin1).toFixed(soTron);
+        return tota1;
+        break;
+      case "ETH":
+        let coin2 = coins.ETH;
+        let tota2 = (tong * coin2).toFixed(soTron);
+        return tota2;
+        break;
+      default:
+        break;
+    }
+  };
   render() {
-    let { currentStatistics } = this.props;
-    console.log(ethConvertBTC());
+    let { currentStatistics, coins } = this.props;
     if (!currentStatistics) {
       return <div></div>;
     } else {
-      console.log(currentStatistics.currentHashrate);
-      let BTC = ethConvertBTC;
+      console.log(parseInt(coins.ETH));
+      console.log(this.ETH("ETH", 2));
       return (
         <div classname="card-header card-headr-primary">
           <div className="table-responsive container">
             <h3>
-              Tổng Miner :{" "}
-              {Math.floor(currentStatistics.currentHashrate / 1000000)}GH/s
+              Khai thác :
+              {Math.floor(currentStatistics.currentHashrate / 1000000)} GH/s
             </h3>
 
             <table className="table">
@@ -35,41 +66,62 @@ class Table extends Component {
                   <th>BTC</th>
                   <th>USDT</th>
                   <th>Điện Tạm Tính</th>
-                  <th>Vận Hành</th>
+                  <th>Lợi Nhuận Khai Thác</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1 Ngày</td>
                   <td>Free</td>
-                  <td>{this.tamTinhETH()} ETH</td>
-                  <td>{this.tamTinhETH() * 0.025463} BTC</td>
-                  <td className="text-primary">
-                    ${Math.floor(this.tamTinhETH() * 245.089173)}
+                  <td>{this.ETH("NULL", 2)} ETH</td>
+                  <td>{this.ETH("ETHBTC", 3)} BTC</td>
+                  <td className="text-primary">$ {this.ETH("ETH", 0)}</td>
+                  <td>
+                    $ {(currentStatistics.activeWorkers * 1.7).toFixed(0)}
                   </td>
-                  <td>{currentStatistics.activeWorkers * 1.7}</td>
-                  <td>{0.5}</td>
+                  <td className="text-danger">
+                    ${" "}
+                    {(
+                      this.ETH("ETH", 3) -
+                      currentStatistics.activeWorkers * 1.7
+                    ).toFixed(0)}
+                  </td>
                 </tr>
                 <tr>
                   <td>1 Tuần</td>
                   <td>Free</td>
-                  <td>{this.tamTinhETH() * 7} ETH</td>
-                  <td>{this.tamTinhETH() * 0.025463 * 7} BTC</td>
+                  <td>{this.ETH("NULL", 3) * 7} ETH</td>
+                  <td>{(this.ETH("ETHBTC", 3) * 7).toFixed(3)} BTC</td>
                   <td className="text-primary">
-                    ${Math.floor(this.tamTinhETH() * 245.089173) * 7}
+                    $ {(this.ETH("ETH", 3) * 7).toFixed(0)}
                   </td>
-                  <td>{currentStatistics.activeWorkers * 1.7 * 7}</td>
+                  <td>
+                    $ {(currentStatistics.activeWorkers * 1.7 * 7).toFixed(0)}
+                  </td>
+                  <td>
+                    {" "}
+                    $
+                    {(this.ETH("ETH", 3) * 7).toFixed(0) -
+                      (currentStatistics.activeWorkers * 1.7 * 7).toFixed(0)}
+                  </td>
                 </tr>
                 <tr>
                   <td>1 Tháng</td>
                   <td>Free</td>
-                  <td>{this.tamTinhETH() * 30} ETH</td>
-                  <td>{this.tamTinhETH() * 0.025463 * 30} BTC</td>
+                  <td>{this.ETH("NULL", 2) * 30} ETH</td>
+                  <td>{(this.ETH("ETHBTC", 3) * 30).toFixed(3)} BTC</td>
                   <td className="text-primary">
-                    ${Math.floor(this.tamTinhETH() * 245.089173) * 30}
+                    $ {(this.ETH("ETH", 3) * 30).toFixed(0)}
                   </td>
-                  <td>{currentStatistics.activeWorkers * 1.7 * 30}</td>
-                  <td></td>
+                  <td>
+                    $ {(currentStatistics.activeWorkers * 1.7 * 30).toFixed(0)}
+                  </td>
+                  <td>
+                    {" "}
+                    $
+                    {(this.ETH("ETH", 3) * 30).toFixed(0) -
+                      (currentStatistics.activeWorkers * 1.7 * 30).toFixed(0)}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -80,7 +132,8 @@ class Table extends Component {
   }
 }
 const mapStateToProps = state => ({
-  currentStatistics: state.ListDataETH.DashBroad.currentStatistics
+  currentStatistics: state.ListDataETH.DashBroad.currentStatistics,
+  coins: state.ListDataETH.Coin
 });
 
 export default connect(mapStateToProps, null)(Table);

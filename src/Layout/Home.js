@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { actGetDashBroad, actGetWorkers, actGetWhatToMine } from "../Action/ApiETH";
 import { connect } from "react-redux";
 import Table from "../components/Table/Table";
+import { ethConvertUSD } from "../components/Coinmarketcap";
 class Home extends Component {
   async componentDidMount() {
     this.props.dispatch(actGetDashBroad());
     this.props.dispatch(actGetWorkers());
     this.props.dispatch(actGetWhatToMine())
+    this.props.dispatch(ethConvertUSD())
   }
   render() {
     return (
