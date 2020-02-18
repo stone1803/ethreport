@@ -4,7 +4,6 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        {/* Navbar */}
         <nav
           className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top "
           id="navigation-example"

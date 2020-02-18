@@ -1,24 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ethConvertUSD } from "../Coinmarketcap";
 class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ETH: null
-    };
-  }
 
-  tamTinhETH = () => {
-    const Onemhz = 0.00007761904;
-    let { currentStatistics, coins } = this.props;
-
-    let a = Math.floor(currentStatistics.currentHashrate / 1000000);
-    let tong = a * Onemhz;
-    return tong;
-  };
   ETH = (loai, soTron) => {
-    const Onemhz = 0.00007761904
+    const Onemhz = 0.000078
     let { currentStatistics, coins } = this.props;
 
     let a = Math.floor(currentStatistics.currentHashrate / 1000000);
@@ -47,8 +32,6 @@ class Table extends Component {
     if (!currentStatistics) {
       return <div></div>;
     } else {
-      console.log(parseInt(coins.ETH));
-      console.log(this.ETH("ETH", 2));
       return (
         <div classname="card-header card-headr-primary">
           <div className="table-responsive container">
