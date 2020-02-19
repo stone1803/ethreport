@@ -3,6 +3,7 @@ import { actGetDashBroad, actGetWorkers, actGetWhatToMine } from "../Action/ApiE
 import { connect } from "react-redux";
 import Table from "../components/Table/Table";
 import { ethConvertUSD } from "../components/Coinmarketcap";
+import Overview from "../components/Overview";
 class Home extends Component {
   async componentDidMount() {
     this.props.dispatch(actGetDashBroad());
@@ -13,6 +14,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+         <div className="row container-fluid mt-3">
+              <Overview />
+            </div>
         <div className="container">
           <Table />
         </div>

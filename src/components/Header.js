@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-
-export default class Header extends Component {
+import { connect } from "react-redux";
+class Header extends Component {
+  
+  thongbaoETH = () => {
+    let { worker } = this.props;
+    return worker.map((item, index) => {
+      if ((item.currentHashrate / 100000).toFixed(0) < 100) {
+        return (
+          <a className="dropdown-item text-danger" href="javascript:void(0)">
+            {item.worker}
+          </a>
+        );
+      }
+    });
+  };
   render() {
+    console.log(this.state)
     return (
       <div>
         <nav
@@ -63,28 +77,14 @@ export default class Header extends Component {
                     aria-expanded="false"
                   >
                     <i className="material-icons">notifications</i>
-                    <span className="notification">5</span>
-                    <p className="d-lg-none d-md-block">Some Actions</p>
+                    <span className="notification"></span>
+                    <p className="d-lg-none d-md-block">Thông Báo</p>
                   </a>
                   <div
                     className="dropdown-menu dropdown-menu-right"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
-                    <a className="dropdown-item" href="javascript:void(0)">
-                      Mike John responded to your email
-                    </a>
-                    <a className="dropdown-item" href="javascript:void(0)">
-                      You have 5 new tasks
-                    </a>
-                    <a className="dropdown-item" href="javascript:void(0)">
-                      You're now friend with Andrew
-                    </a>
-                    <a className="dropdown-item" href="javascript:void(0)">
-                      Another Notification
-                    </a>
-                    <a className="dropdown-item" href="javascript:void(0)">
-                      Another One
-                    </a>
+                    {this.thongbaoETH()}
                   </div>
                 </li>
                 <li className="nav-item">
@@ -101,3 +101,7 @@ export default class Header extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  worker: state.ListDataETH.Workers
+});
+export default connect(mapStateToProps, null)(Header);

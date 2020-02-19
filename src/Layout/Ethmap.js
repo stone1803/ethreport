@@ -7,7 +7,7 @@ class Ethmap extends Component {
     return workers.map((item, index) => {
       if((item.currentHashrate / 100000).toFixed(0)<100){
         return (
-          <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+          <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6" key="index">
             <div className="card card-stats">
               <div className="card-header card-header-danger card-header-icon">
                 <div className="card-icon">
@@ -50,17 +50,29 @@ class Ethmap extends Component {
       }
     });
   };
+  trauOff = ()=>{
+    let {workers}= this.props
+    workers.map((item,index)=>{
+      if((item.currentHashrate / 100000).toFixed(0)<100){
+      return <span className="text-danger">{item.worker}</span>
+      }
+    })
+  }
+  
   render() {
-    let { workers } = this.props;
-    console.log(workers);
-    return (
+   let {workers}= this.props;
+   if(workers){
+      return (
       <div>
-        <p className="text-center">
-          Màu đỏ là máy đã tắt vui lòng chọn thông báo để báo cho quản trị{" "}
-        </p>
+        <div className="container mt-3">
+          <p className="text-danger">Có thể xem nhanh bằng xem thông báo ở góc </p>
+        </div>
         <div className="row container">{this.renderWokers()}</div>
       </div>
     );
+   }else{
+     return <div></div>
+   }
   }
 }
 const mapStateToProps = state => ({

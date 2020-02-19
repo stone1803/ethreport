@@ -7,8 +7,9 @@ const override = css`
   margin: 0 auto;
   border-color: blue;
 `;
-
 class Overview extends Component {
+  
+  
   render() {
     let { currentStatistics, worker } = this.props;
     console.log(this.props);
@@ -21,7 +22,7 @@ class Overview extends Component {
                 <div className="card-icon">
                   <i className="material-icons">computer</i>
                 </div>
-                <p className="card-category">Tổng Trâu</p>
+                <p className="card-category">Tổng Trâu Từng On</p>
                 <h3 className="card-title">{worker.length}</h3>
               </div>
               <div className="card-footer">

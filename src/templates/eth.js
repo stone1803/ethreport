@@ -23,9 +23,7 @@ const Layout = props => {
                 <div className="row"></div>
               </div>
             </div>
-            <div className="row container-fluid mt-3">
-              <Overview />
-            </div>
+           
             {props.children}
           </div>
         </div>
