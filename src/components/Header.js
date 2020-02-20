@@ -6,7 +6,8 @@ class Header extends Component {
   thongbaoETH = () => {
     let { worker } = this.props;
     return worker.map((item, index) => {
-      if ((item.currentHashrate / 100000).toFixed(0) < 100) {
+
+      if ((item.currentHashrate / 1000000).toFixed(0) < 100) {
         return (
           <a className="dropdown-item text-danger" href="javascript:void(0)">
             {item.worker}
@@ -16,8 +17,6 @@ class Header extends Component {
     });
   };
   render() {
-    {email()}
-    console.log(this.state)
     return (
       <div>
         <nav
