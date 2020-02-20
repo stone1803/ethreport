@@ -23,7 +23,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "request-promise": "^4.2.5",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "xoauth2": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

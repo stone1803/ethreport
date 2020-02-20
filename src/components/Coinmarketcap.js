@@ -15,4 +15,17 @@ const ethConvertUSD = () => {
 
   
 };
-export { ethConvertUSD };
+const Top10Coin = () => {
+  var CoinMarketCap = require("node-coinmarketcap");
+  var coinmarketcap = new CoinMarketCap();
+  return dispatch =>{
+    coinmarketcap.multi(coins =>{
+   
+      dispatch(createAction("TOP10",coins.getTop(10)))
+    })
+  }
+
+  
+};
+
+export { ethConvertUSD,Top10Coin };

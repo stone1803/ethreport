@@ -32,13 +32,23 @@ class Table extends Component {
     if (!currentStatistics) {
       return <div></div>;
     } else {
+      let {  coins } = this.props;
+
       return (
         <div classname="card-header card-headr-primary">
           <div className="table-responsive container">
-            <h3>
+        <div className="row">
+          <div className="col-5">
+          <h3>
               Khai thác :
               {Math.floor(currentStatistics.currentHashrate / 1000000)} GH/s
             </h3>
+          </div>
+          <div className="col-7 text-center mt-3">
+              Giá thị trường : 
+              ETH $ {coins.ETH}
+          </div>
+        </div>
 
             <table className="table">
               <thead className=" text-primary">
