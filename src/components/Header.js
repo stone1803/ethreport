@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {email} from "../Email/email"
 class Header extends Component {
   
   thongbaoETH = () => {
@@ -15,6 +16,7 @@ class Header extends Component {
     });
   };
   render() {
+    {email()}
     console.log(this.state)
     return (
       <div>
