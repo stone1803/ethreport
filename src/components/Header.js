@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {email} from "../Email/email"
+import { ethConvertUSD,Top10Coin } from "../components/Coinmarketcap";
+import { actGetDashBroad, actGetWorkers, actGetWhatToMine } from "../Action/ApiETH";
+
 class Header extends Component {
+  async componentDidMount() {
+    this.props.dispatch(actGetDashBroad());
+    this.props.dispatch(actGetWorkers());
+    this.props.dispatch(actGetWhatToMine())
+    this.props.dispatch(ethConvertUSD())
+    this.props.dispatch(Top10Coin())
+
+  }
   
   thongbaoETH = () => {
     let { worker } = this.props;

@@ -14,7 +14,7 @@ export default class Menu extends Component {
         </div>
         <div className="sidebar-wrapper">
           <ul className="nav">
-            <li className="nav-item active  ">
+            <li className="nav-item active ">
             <NavLink className="nav-link" to="">
                 <i className="material-icons">dashboard</i>
                 <p>Tổng Quan</p>
@@ -27,16 +27,16 @@ export default class Menu extends Component {
               </NavLink>
             </li>
             <li className="nav-item ">
-              <a className="nav-link" href="./user.html">
+              <NavLink className="nav-link" to="/Report" activeClassName="nav-item active">
                 <i className="material-icons">money</i>
                 <p>Thu Nhập Và Chi Phí</p>
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item ">
-              <a className="nav-link" href="./typography.html">
+              <NavLink className="nav-link" to="/Uti">
                 <i className="material-icons">library_books</i>
                 <p>Tiện Ích</p>
-              </a>
+              </NavLink>
             </li>
             {/* <li class="nav-item active-pro ">
                   <a class="nav-link" href="./upgrade.html">
