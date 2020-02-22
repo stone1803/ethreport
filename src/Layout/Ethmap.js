@@ -5,7 +5,7 @@ class Ethmap extends Component {
   renderWokers = () => {
     let { workers } = this.props;
     return workers.map((item, index) => {
-      if((item.currentHashrate / 100000).toFixed(0)<100){
+      if ((item.currentHashrate / 100000).toFixed(0) < 100) {
         return (
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6" key="index">
             <div className="card card-stats">
@@ -26,7 +26,7 @@ class Ethmap extends Component {
             </div>
           </div>
         );
-      }else{
+      } else {
         return (
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6">
             <div className="card card-stats">
@@ -46,33 +46,34 @@ class Ethmap extends Component {
               </div>
             </div>
           </div>
-        );      
+        );
       }
     });
   };
-  trauOff = ()=>{
-    let {workers}= this.props
-    workers.map((item,index)=>{
-      if((item.currentHashrate / 100000).toFixed(0)<100){
-      return <span className="text-danger">{item.worker}</span>
+  thongbaoETH = () => {
+    let { workers } = this.props;
+    return workers.map((item, index) => {
+      if ((item.currentHashrate / 1000000).toFixed(0) < 100) {
+        return <span className="pl-2">{item.worker}</span>;
       }
-    })
-  }
-  
+    });
+  };
   render() {
-   let {workers}= this.props;
-   if(workers){
+    let { workers } = this.props;
+    if (workers) {
       return (
-      <div>
-        <div className="container mt-3">
-          <p className="text-danger">Có thể xem nhanh bằng xem thông báo ở góc </p>
+        <div>
+          <div className="container mt-3">
+            <p className="text-danger">
+              Những máy đã OFF: {this.thongbaoETH()}{" "}
+            </p>
+          </div>
+          <div className="row container">{this.renderWokers()}</div>
         </div>
-        <div className="row container">{this.renderWokers()}</div>
-      </div>
-    );
-   }else{
-     return <div></div>
-   }
+      );
+    } else {
+      return <div></div>;
+    }
   }
 }
 const mapStateToProps = state => ({

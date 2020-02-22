@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "coingecko-api": "^1.0.10",
     "coinmarketcap-api": "^3.0.1",
     "firebase-admin": "^8.9.2",
     "firebase-functions": "^3.3.0",

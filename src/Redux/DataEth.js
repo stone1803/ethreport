@@ -19,7 +19,12 @@ const ListDataETH = (state = DataETH, action) => {
       return {...state};
     case "TOP10":
       console.log(action)
-      state.Top10Coin=action.payload
+      state.Top10Coin=action.payload;
+      return {...state}
+
+    case "PAYOUT":
+      state.Payouts= action.payload;
+      return {...state}
     default:
       return state;
   }
